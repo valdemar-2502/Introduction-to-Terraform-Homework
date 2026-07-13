@@ -60,7 +60,7 @@ personal.auto.tfvars
 ### Ответ:
 ![terraform](https://github.com/valdemar-2502/Introduction-to-Terraform-Homework/blob/main/screenshots/task3.png)
 
-``
+```
 resource "docker_image" "nginx" {
   name         = "nginx:latest"
   keep_locally = true
@@ -75,7 +75,8 @@ resource "docker_container" "nginx" {
     external = 9090
   }
 }
-``
+
+```
 ---
 ``
 ![terraform](https://github.com/valdemar-2502/Introduction-to-Terraform-Homework/blob/main/screenshots/task4.png)
