@@ -54,6 +54,14 @@ personal.auto.tfvars
 ---
 ### Ответ:
 ![terraform](https://github.com/valdemar-2502/Introduction-to-Terraform-Homework/blob/main/screenshots/task2.png)
+### Ошибки:
+
+```
+random_password: имя ресурса содержит заглавные буквы в "resulT" вместо "result"
+docker_container: имя "1nginx" начинается с цифры, что недопустимо
+name  = "example_${random_password.random_string_FAKE.resulT}" не допустимо "_FAKE"
+```
+
 5. Выполните код. В качестве ответа приложите: исправленный фрагмент кода и вывод команды ```docker ps```.
 
 ---
