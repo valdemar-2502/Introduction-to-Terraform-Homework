@@ -10,6 +10,9 @@
 ### Чек-лист готовности к домашнему заданию
 
 1. Скачайте и установите **Terraform** версии >=1.12.0 . Приложите скриншот вывода команды ```terraform --version```.
+``
+![Скриншот команды ansible-playbook -i production.ini download_and_extract.yml](https://github.com/valdemar-2502/Ansible-Homework/blob/main/demo_ansible_downloads_kafka.png)
+```
 2. Скачайте на свой ПК этот git-репозиторий. Исходный код для выполнения задания расположен в директории **01/src**.
 3. Убедитесь, что в вашей ОС установлен docker.
 
