@@ -76,11 +76,29 @@ resource "docker_container" "nginx" {
   }
 }
 ``
+---
+``
+![terraform](https://github.com/valdemar-2502/Introduction-to-Terraform-Homework/blob/main/screenshots/task4.png)
 
 6. Замените имя docker-контейнера в блоке кода на ```hello_world```. Не перепутайте имя контейнера и имя образа. Мы всё ещё продолжаем использовать name = "nginx:latest". Выполните команду ```terraform apply -auto-approve```.
 Объясните своими словами, в чём может быть опасность применения ключа  ```-auto-approve```. Догадайтесь или нагуглите зачем может пригодиться данный ключ? В качестве ответа дополнительно приложите вывод команды ```docker ps```.
 ---
 ### Ответ:
+### Ключ -auto-approve автоматически подтверждает все изменения без запроса подтверждения пользователя. Это опасно, так как:
+
+Можно случайно удалить production-ресурсы
+
+Изменения применяются немедленно без возможности проверки плана
+
+Нет времени на осознание последствий изменений
+
+### Где может пригодиться:
+
+В CI/CD пайплайнах для автоматического развертывания
+
+В скриптах автоматизации
+
+При тестировании в изолированных средах
 ![terraform](https://github.com/valdemar-2502/Introduction-to-Terraform-Homework/blob/main/screenshots/task6.png)
 
 7. Уничтожьте созданные ресурсы с помощью **terraform**. Убедитесь, что все ресурсы удалены. Приложите содержимое файла **terraform.tfstate**. 
@@ -88,7 +106,23 @@ resource "docker_container" "nginx" {
 ![terraform](https://github.com/valdemar-2502/Introduction-to-Terraform-Homework/blob/main/screenshots/task5.png)
 8. Объясните, почему при этом не был удалён docker-образ **nginx:latest**. Ответ **ОБЯЗАТЕЛЬНО НАЙДИТЕ В ПРЕДОСТАВЛЕННОМ КОДЕ**, а затем **ОБЯЗАТЕЛЬНО ПОДКРЕПИТЕ** строчкой из документации [**terraform провайдера docker**](https://library.tf/providers/kreuzwerker/docker/latest).  (ищите в классификаторе resource docker_image )
 
+---
+### Ответ:
+Образ не удален, потому что в ресурсе docker_image установлен параметр:
+```
+keep_locally = true
+Этот параметр указывает Terraform не удалять образ при уничтожении ресурса.
 
+Подтверждение из документации провайдера docker:
+Согласно документации resource docker_image, параметр keep_locally:
+
+"If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation."
+
+Таким образом, keep_locally = true предотвращает удаление образа nginx:latest при выполнении terraform destroy.
+---
+```
+[ссылка](https://library.tf/providers/kreuzwerker/docker/latest/docs/resources/image)
+---
 ------
 
 ## Дополнительное задание (со звёздочкой*)
